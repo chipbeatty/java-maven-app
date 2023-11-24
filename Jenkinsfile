@@ -38,19 +38,11 @@ pipeline {
             }
         }
         stage("deploy") {
-            input {
-                message "select environment to deploy to"
-                ok "done"
-                parameters {
-                    choice(name: 'ONE', choices: ['dev', 'staging', 'production'], description:'')
-                    choice(name: 'TWO', choices: ['dev', 'staging', 'production'], description:'')
-                }
-            }
             steps {
                 script {
+                    env.ENV = input message: "Select the environment to deploy to", ok "Done", parameters: [choice(name: 'ONE', choices: ['dev', 'staging', 'production'], description:'')]
                     gv.deployApp()
-                    echo "deploy to ${ONE}"
-                    echo "deploy to ${TWO}"
+                    echo "deploy to ${ENV}"
                 }
             }
         }
