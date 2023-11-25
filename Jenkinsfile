@@ -9,7 +9,7 @@ pipeline {
             steps {
                 script {
                    echo "testing app"
-                   echi "executing pipeline for branch $BRANCH_NAME"
+                   echo "executing pipeline for branch $BRANCH_NAME"
                 }
             }
         }
